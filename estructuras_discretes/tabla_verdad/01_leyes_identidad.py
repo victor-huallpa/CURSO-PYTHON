@@ -4,14 +4,15 @@ valores = [True, False]
 print("++++++++++++++++++++")
 print("+LEYES DE IDENTIDAD+")
 print("++++++++++++++++++++")
-print(f"p\t|\tp^V\t|\tpvF")
+print(f"p\t|\tp^V\t|\tpvF\t|\tidentidad?")
 # print("_______________________________________")
 print("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯")
-for val in valores:
-    
-    if val == True: resul = True
-    else: resul =False
-    if val == False: resul1 = False
-    else: resul1 = True
-    print(f"{val}\t|\t{resul}\t|\t{resul1}")
+for p in valores:
+    #verficamos la conjuncion y disyuncion de las preposiciones
+    conjuncion = p and True
+    disyuncion = p or False
+
+    esIgaul = (conjuncion == p) and (disyuncion == p)
+
+    print(f"{p}\t|\t{conjuncion}\t|\t{disyuncion}\t|\t{esIgaul}")
 print(f"\np ≡ p^V | p ≡ pvF\nPor ende son identidad")
