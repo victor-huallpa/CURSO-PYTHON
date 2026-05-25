@@ -1,0 +1,14 @@
+entorno/
+venv/
+
+__pycache__/
+*.pyc
+
+.idea/
+.vscode/
+
+.ipynb_checkpoints/
+
+*.png
+*.gif
+*.mp4
