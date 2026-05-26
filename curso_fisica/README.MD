@@ -1,103 +1,312 @@
-# Simulaciones Gráficas del Documento — Fórmulas Base en LaTeX
+# 🔬 Simulaciones Interactivas de Física
 
-## Objetivo
-
-Este documento contiene únicamente:
-
-* las simulaciones visuales/gráficas presentes en el documento original
-* las fórmulas matemáticas usadas en dichas representaciones
-* las ecuaciones en formato LaTeX
-* las variables necesarias para programarlas en Python
+Colección completa de simulaciones gráficas interactivas de fenómenos físicos fundamentales, desde mecánica ondulatoria hasta mecánica cuántica, implementadas en Python con visualización Matplotlib.
 
 ---
 
-# 1. MOVIMIENTO ARMÓNICO SIMPLE
+## 📋 Contenido del Proyecto
 
-## Representación gráfica
+El proyecto está organizado en **6 módulos temáticos** con simulaciones relacionadas:
 
-Oscilación sinusoidal de una partícula.
+### 1. **Ondas** (`ondas/`)
+Simulaciones de fenómenos ondulatorios clásicos.
 
-## Fórmula principal
+| Simulación | Fenómeno | Ecuación |
+|------------|----------|----------|
+| `movimiento_armonico.py` | Oscilación sinusoidal | $x(t) = A\cos(\omega t + \phi)$ |
+| `onda_viajera.py` | Propagación ondulatoria | $y(x,t) = A\cos(kx - \omega t + \phi)$ |
+| `onda_estacionaria.py` | Ondas estacionarias | $y(x,t) = 2A\sin(kx)\cos(\omega t)$ |
+| `superposicion.py` | Interferencia entre ondas | $y_R = y_1 + y_2$ |
+| `interferencia.py` | Patrones interferométricos | $\Delta r = n\lambda$ |
 
-```latex id="m0jlwm"
-x(t)=A\cos(\omega t+\phi)
+---
+
+### 2. **Física Atómica** (`atomica/`)
+Modelos clásicos y cuánticos del átomo.
+
+| Simulación | Concepto | Ecuación Principal |
+|------------|----------|-------------------|
+| `modelo_bohr.py` | Órbitas cuantizadas | $r_n = a_0 n^2$, $E_n = -\frac{13.6 \text{ eV}}{n^2}$ |
+| `transiciones.py` | Transiciones electrónicas | $\Delta E = hf = h\nu$ |
+| `energia_foton.py` | Energía de fotones | $E = h\nu = \frac{hc}{\lambda}$ |
+| `efecto_fotoelectrico.py` | Efecto fotoeléctrico | $K_{max} = h\nu - \phi$ |
+| `de_broglie.py` | Longitud de onda de De Broglie | $\lambda = \frac{h}{p} = \frac{h}{mv}$ |
+| `rydberg.py` | Fórmula de Rydberg | $\frac{1}{\lambda} = R_H\left(\frac{1}{n_1^2} - \frac{1}{n_2^2}\right)$ |
+| `ondas_estacionarias_electron.py` | Ondas estacionarias del electrón | Interpretación ondulatoria de Bohr |
+
+---
+
+### 3. **Mecánica Cuántica General** (`cuantica/`)
+Conceptos fundamentales de la teoría cuántica.
+
+| Simulación | Tema | Descripción |
+|------------|------|-------------|
+| `schrodinger.py` | Ecuación de Schrödinger | Evolución temporal de la función de onda |
+| `schrodinger_general.py` | Schrödinger generalizada | Ecuación independiente del tiempo |
+| `paquete_ondas.py` | Paquete de ondas | Propagación de superposiciones gaussianas |
+| `onda_plana.py` | Ondas planas | Eigenfunciones en espacio libre |
+| `densidad_probabilidad.py` | Densidad de probabilidad | Interpretación de $\|\psi\|^2$ |
+| `operador_momento.py` | Operador momento | $\hat{p} = -i\hbar\frac{\partial}{\partial x}$ |
+| `operador_energia.py` | Operador energía | $\hat{E} = i\hbar\frac{\partial}{\partial t}$ |
+
+---
+
+### 4. **Óptica Clásica** (`optica/`)
+Fenómenos luminosos y ondulatorios.
+
+| Simulación | Fenómeno | Aplicación |
+|------------|----------|-----------|
+| `doble_rendija.py` | Experimento de Young | Interferencia de luz |
+| `difraccion.py` | Difracción de Fraunhofer | Patrón de intensidad |
+| `patron_combinado.py` | Difracción e interferencia | Combinación de efectos |
+
+---
+
+### 5. **Utilidades** (`utilidades/`)
+Herramientas y constantes compartidas.
+
+| Módulo | Contenido |
+|--------|----------|
+| `constantes.py` | Constantes físicas fundamentales (h, ħ, c, e, m_e, etc.) |
+| `graficador.py` | Funciones para visualización y animación de datos |
+
+---
+
+### 6. **Videos** (`videos/`)
+Almacenamiento para animaciones y videos generados.
+
+---
+
+## 🛠️ Instalación y Configuración
+
+### Requisitos
+- Python 3.8+
+- pip (gestor de paquetes)
+
+### Dependencias Principales
+- **matplotlib**: Visualización gráfica
+- **numpy**: Computación numérica
+- **scipy**: Algoritmos científicos
+- **jupyter**: Notebooks interactivos
+- **celluloid**: Generación de animaciones
+
+### Instalación
+
+1. **Clonar o descargar el proyecto**
+   ```bash
+   cd /var/www/html/PYTHON/python-cursos/curso_fisica
+   ```
+
+2. **Crear entorno virtual**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   # o
+   venv\Scripts\activate  # Windows
+   ```
+
+3. **Instalar dependencias**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+---
+
+## 🚀 Uso
+
+### Ejecutar una simulación individual
+```bash
+# Activar entorno virtual
+source venv/bin/activate
+
+# Ejecutar simulación
+python fisica_simulaciones/ondas/movimiento_armonico.py
+python fisica_simulaciones/atomica/modelo_bohr.py
+python fisica_simulaciones/cuantica/schrodinger.py
+# etc.
 ```
 
-## Variables
+### Estructura de archivos de simulación
+Cada simulación sigue un patrón estándar:
 
-```latex id="nyx5wd"
-A \rightarrow amplitud
-```
+```python
+"""
+Documentación del fenómeno físico
+- Ecuaciones matemáticas
+- Descripción física
+- Conceptos clave
+"""
 
-```latex id="mcfh85"
-\omega \rightarrow frecuencia angular
-```
+# Importar librerías necesarias
+import numpy as np
+import matplotlib.pyplot as plt
+from utilidades.constantes import *
+from utilidades.graficador import *
 
-```latex id="mxz5io"
-\phi \rightarrow fase inicial
+# Definir parámetros del sistema
+# Realizar cálculos
+# Generar visualización
+# mostrar/guardar resultados
 ```
 
 ---
 
-# 2. ONDA VIAJERA
+## 📊 Ejemplo de Uso
 
-## Representación gráfica
-
-Propagación de una onda en el espacio.
-
-## Fórmula principal
-
-```latex id="r2n49v"
-y(x,t)=A\cos(kx-\omega t+\phi)
+### Movimiento Armónico Simple
+```python
+python fisica_simulaciones/ondas/movimiento_armonico.py
 ```
+Genera una visualización de la oscilación periódica de una masa en un resorte.
 
-## Fórmulas auxiliares
-
-### Número de onda
-
-```latex id="vrmnnr"
-k=\frac{2\pi}{\lambda}
+### Modelo de Bohr
+```python
+python fisica_simulaciones/atomica/modelo_bohr.py
 ```
+Visualiza las órbitas electrónicas permitidas y los niveles de energía del átomo de hidrógeno.
 
-### Frecuencia angular
-
-```latex id="0kv8ry"
-\omega=2\pi f
+### Ecuación de Schrödinger
+```python
+python fisica_simulaciones/cuantica/schrodinger.py
 ```
+Simula la evolución temporal de una función de onda gaussiana en espacio libre.
 
-### Velocidad de propagación
+---
 
-```latex id="kj80rn"
-v=\lambda f
+## 📚 Conceptos Cubre
+
+### Mecánica Ondulatoria
+- Oscilación armónica simple
+- Propagación de ondas
+- Ondas estacionarias
+- Interferencia y difracción
+- Superposición
+
+### Física Atómica
+- Modelo de Bohr del átomo
+- Transiciones electrónicas
+- Efecto fotoeléctrico
+- Dualidad onda-corpúsculo
+- Fórmula de Rydberg
+
+### Mecánica Cuántica
+- Función de onda ($\psi$)
+- Ecuación de Schrödinger
+- Densidad de probabilidad ($|\psi|^2$)
+- Paquetes de ondas
+- Operadores cuánticos (momento, energía)
+
+### Óptica
+- Interferencia luminosa
+- Difracción de Fraunhofer
+- Experimento de doble rendija
+- Parámetros ópticos
+
+---
+
+## 🎯 Objetivos Educativos
+
+Estas simulaciones buscan:
+
+✓ Visualizar conceptos físicos abstractos  
+✓ Facilitar la comprensión de ecuaciones matemáticas  
+✓ Permitir experimentación interactiva  
+✓ Demostrar fenómenos que son difíciles de observar en laboratorio  
+✓ Proporcionar una base para análisis más complejos  
+✓ Fomentar el aprendizaje experimental
+
+---
+
+## 📁 Estructura Completa del Proyecto
+
+```
+curso_fisica/
+├── README.MD                          # Este archivo
+├── requirements.txt                   # Dependencias Python
+├── fisica_simulaciones/
+│   ├── main.py
+│   ├── ondas/
+│   │   ├── movimiento_armonico.py
+│   │   ├── onda_viajera.py
+│   │   ├── onda_estacionaria.py
+│   │   ├── superposicion.py
+│   │   └── interferencia.py
+│   ├── atomica/
+│   │   ├── modelo_bohr.py
+│   │   ├── transiciones.py
+│   │   ├── energia_foton.py
+│   │   ├── efecto_fotoelectrico.py
+│   │   ├── de_broglie.py
+│   │   ├── rydberg.py
+│   │   └── ondas_estacionarias_electron.py
+│   ├── cuantica/
+│   │   ├── schrodinger.py
+│   │   ├── schrodinger_general.py
+│   │   ├── paquete_ondas.py
+│   │   ├── onda_plana.py
+│   │   ├── densidad_probabilidad.py
+│   │   ├── operador_momento.py
+│   │   └── operador_energia.py
+│   ├── optica/
+│   │   ├── doble_rendija.py
+│   │   ├── difraccion.py
+│   │   └── patron_combinado.py
+│   ├── utilidades/
+│   │   ├── constantes.py
+│   │   └── graficador.py
+│   ├── graficas/                      # Gráficos generados
+│   └── videos/                        # Animaciones generadas
 ```
 
 ---
 
-# 3. SUPERPOSICIÓN DE ONDAS
+## 🔧 Constantes Físicas Incluidas
 
-## Representación gráfica
+El archivo `utilidades/constantes.py` proporciona:
 
-Interferencia entre dos ondas.
-
-## Fórmula principal
-
-```latex id="7b6m4h"
-y_R(x,t)=y_1(x,t)+y_2(x,t)
-```
+- $h$ = Constante de Planck
+- $\hbar$ = Constante de Planck reducida
+- $c$ = Velocidad de la luz
+- $e$ = Carga elemental
+- $m_e$ = Masa del electrón
+- $a_0$ = Radio de Bohr
+- $R_H$ = Constante de Rydberg
+- Y más...
 
 ---
 
-# 4. INTERFERENCIA CONSTRUCTIVA
+## 📝 Notas sobre Visualización
 
-## Representación gráfica
+Todas las simulaciones utilizan **matplotlib** para generar gráficos interactivos que permiten:
 
-Máximos de intensidad.
+- Ver la evolución del sistema en tiempo real
+- Guardar imágenes de los resultados
+- Generar animaciones con **celluloid**
+- Personalizar parámetros (amplitud, frecuencia, tiempo, etc.)
 
-## Fórmula
+---
 
-```latex id="kqrf1l"
-\Delta r=n\lambda
-```
+## 🤝 Contribuciones
+
+Para agregar nuevas simulaciones:
+
+1. Crear archivo en la carpeta temática correspondiente
+2. Incluir documentación con ecuaciones y conceptos
+3. Usar las constantes de `utilidades/constantes.py`
+4. Implementar visualización con `utilidades/graficador.py`
+5. Actualizar este README
+
+---
+
+## 📄 Licencia
+
+Este proyecto es material educativo para cursos de física.
+
+---
+
+## 🎓 Autor
+
+Proyecto de simulaciones didácticas de fenómenos físicos.
 
 ---
 
