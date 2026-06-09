@@ -1,0 +1,25 @@
+# Archivos generados por LaTeX
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.pdf
+*.synctex.gz
+*.toc
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos temporales
+*~
+*.swp
+*.swo
+
+# Directorio de compilación temporal
+build/
+dist/
+
+# Archivos específicos del proyecto
+*.zip
